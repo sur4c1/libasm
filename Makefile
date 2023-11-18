@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 16:01:44 by bguyot            #+#    #+#              #
-#    Updated: 2023/11/18 17:02:36 by bguyot           ###   ########.fr        #
+#    Updated: 2023/11/18 19:06:16 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		=	libasm.a
 SRC_FILES	=	ft_strlen	\
 				ft_strcpy	\
 				ft_strcmp	\
-				# ft_write	\
+				ft_write	\
 				# ft_read		\
 				# ft_strdup	\
 
@@ -29,10 +29,10 @@ RM			=	rm -rf
 all: $(NAME)
 
 $(NAME):	$(OBJS)
-	$(AR) rcs $(NAME) $(OBJS)
+	$(AR) -rc $(NAME) $(OBJS)
 
 %.o: %.s
-	$(NASM) -f elf64 $< -o $@
+	$(NASM) -f elf64  $< -o $@
 
 re: fclean all
 

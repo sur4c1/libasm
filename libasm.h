@@ -6,12 +6,13 @@
 /*   By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:13:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/11/18 17:07:50 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/11/18 17:50:37 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <stddef.h>
+#include <sys/types.h>
 
 /**
  *	@brief	Calculate the size of a string
@@ -35,3 +36,5 @@ char	*ft_strcpy(char *dest, const char *src);
  *	@returns	The difference s1 - s2
  */
 int		ft_strcmp(char *s1, const char *s2);
+
+ssize_t	ft_write(int fd, const void *buf, size_t count);
