@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libasm.h                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 16:13:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/11/18 16:51:02 by bguyot           ###   ########.fr       */
+/*   Created: 2023/11/18 16:01:23 by bguyot            #+#    #+#             */
+/*   Updated: 2023/11/18 16:51:18 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-#include <stddef.h>
+#include <string.h>
+#include <stdio.h>
+#include "libasm.h"
 
-/**
- *	@brief	Calculate the size of a string
- *	@param	str	The string to measure
- *	@returns	The size of the string
- */
-size_t	ft_strlen(const char *str);
+int main(int argc, char **argv)
+{
+	if (argc == 1)
+		return 0;
 
-/**
- *	@brief	Copy a string into another
- *	@param	dest	The destination to copy to
- *	@param	src		The source to copy from
- *	@returns	The return value
- */
-char	*ft_strcpy(char *dest, const char *src);
+	{
+		char	dest[100];
+		printf("ft_strcpy(%s) = %s\n", argv[1], ft_strcpy(dest, argv[1]));
+	}
+	{
+		char	dest[100];
+		printf("strcpy(%s) = %s\n", argv[1], strcpy(dest, argv[1]));
+	}
+}

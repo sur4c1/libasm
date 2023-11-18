@@ -6,14 +6,14 @@
 #    By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 16:01:44 by bguyot            #+#    #+#              #
-#    Updated: 2023/11/18 16:07:36 by bguyot           ###   ########.fr        #
+#    Updated: 2023/11/18 16:46:28 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	libasm.a
 
 SRC_FILES	=	ft_strlen	\
-				# ft_strcpy	\
+				ft_strcpy	\
 				# ft_write	\
 				# ft_read		\
 				# ft_strdup	\
