@@ -1,7 +1,7 @@
 ; **************************************************************************** ;
 ;                                                                              ;
 ;                                                         :::      ::::::::    ;
-;    ft_strcpy.s                                        :+:      :+:    :+:    ;
+;    ft_strcmp.s                                        :+:      :+:    :+:    ;
 ;                                                     +:+ +:+         +:+      ;
 ;    By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+         ;
 ;                                                 +#+#+#+#+#+   +#+            ;
@@ -10,28 +10,33 @@
 ;                                                                              ;
 ; **************************************************************************** ;
 
-global ft_strcpy
+global ft_strcmp
 
 SECTION .text
 
-; char *ft_strcpy(char *dest, const char *src)
-ft_strcpy:
-	push	rdi						;	Save RDI (dest)
-	push	rsi						;	Save RSI (src)
+; int ft_strcmp(char *s1, const char *s2)
+ft_strcmp:
+	push	rdi								;	Save RDI (s1)
+	push	rsi								;	Save RSI (s2)
 
 	_increment_loop:
-		cmp		BYTE [rsi],	0x0		;	if [RSI] == 0
-		jz		_end_of_loop		;	jump tp end of loop
-		mov		ah, BYTE [rsi]		;	tmp = *rsi
-		mov		BYTE [rdi], ah		;	*rdi = rax
-		inc		rsi					;	RSI++
-		inc		rdi					;	RDI++
-
-	jmp		_increment_loop			;	jump back to begining of the loop
+		mov		ah, [rdi]					;	tmp = [RDI]
+		cmp		BYTE [rsi],	ah				;	if [RSI] != tmp
+		jnz		_end_of_loop				;	jump tp end of loop
+		cmp		BYTE [rsi],	0x0				;	if [RSI] == 0
+		jz		_end_of_loop				;	jump tp end of loop
+		cmp		BYTE [rdi], 0x0				;	if [RDI] == 0
+		jz		_end_of_loop				;	jump tp end of loop
+		inc		rsi							;	RSI++
+		inc		rdi							;	RDI++
+	jmp		_increment_loop					;	jump back to begining of the loop
 
 	_end_of_loop:
-	mov		BYTE [rdi], 0x0			;	*dest = 0
-	pop		rsi						;	Retrieve RSI (non-volatite)
-	pop		rdi						;	Retrieve RDI (non-volatite)
-	mov		rax, rdi				;	Return dest
+	mov		rax, 0x0						;	ret = 0
+	mov		al, BYTE [rdi]					;	ret = *rdi
+	mov		bl, BYTE [rsi]					;	tmp = *rsi
+	sub		rax, rbx						;	ret -= tmp
+
+	pop		rsi								;	Retrieve RSI (non-volatite)
+	pop		rdi								;	Retrieve RDI (non-volatite)
 	ret

@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:13:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/11/18 16:51:02 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/11/18 17:07:50 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,11 @@ size_t	ft_strlen(const char *str);
  *	@returns	The return value
  */
 char	*ft_strcpy(char *dest, const char *src);
+
+/**
+ *	@brief	Compare two strings
+ *	@param	s1	The left string
+ *	@param	s2	The right string
+ *	@returns	The difference s1 - s2
+ */
+int		ft_strcmp(char *s1, const char *s2);
