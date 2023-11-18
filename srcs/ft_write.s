@@ -20,7 +20,7 @@ ft_write:
 	mov		rax, 0x1				;	Setup for syscall 1 (write)
 	syscall							;	Call the syscall
 
-	cmp		rax, 0x0				;	if ret < 0
+	cmp		rax, 0x0				;	if ret >= 0
 	jns		no_errors				;	jump to no error
 	xor		rbx, rbx				;	rbx = 0
 	sub		rbx, rax				;	rbx -= ret (rbx = -ret)
