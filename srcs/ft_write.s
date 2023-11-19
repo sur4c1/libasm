@@ -26,7 +26,7 @@ ft_write:
 	sub		rbx, rax				;	rbx -= ret (rbx = -ret)
 	call	__errno_location				;
 	mov		[rax], rbx				;	errno = -ret (i think)
-	mov		rax, 0xFFFFFFFF			;	set ret to -1
+	mov		rax, 0xFFFFFFFFFFFFFFFF	;	set ret to -1
 
 	no_errors:
 	ret								;
