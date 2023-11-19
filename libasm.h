@@ -6,7 +6,7 @@
 /*   By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 16:13:57 by bguyot            #+#    #+#             */
-/*   Updated: 2023/11/19 16:55:46 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/11/19 18:45:17 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,4 @@ int		ft_strcmp(char *s1, const char *s2);
 
 ssize_t	ft_write(int fd, const void *buf, size_t count);
 ssize_t	ft_read(int fd, const void *buf, size_t count);
+char	*ft_strdup(const char *s);
