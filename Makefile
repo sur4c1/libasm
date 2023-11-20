@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 16:01:44 by bguyot            #+#    #+#              #
-#    Updated: 2023/11/19 18:42:34 by bguyot           ###   ########.fr        #
+#    Updated: 2023/11/20 11:04:39 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ OBJS		=	$(SRCS:.s=.o)
 
 NASM		=	nasm
 AR			=	ar
+CC			=	cc
 RM			=	rm -rf
 
 all: $(NAME)
@@ -42,4 +43,9 @@ fclean: clean
 clean:
 	$(RM) $(OBJS)
 
-.PHONY: all re fclean clean
+strlen: ft_strlen og_strlen
+
+ft_strlen: $(NAME)
+	FT=1 $(CC) -o ft_strlen srcs/testers/strlen.c $(NAME)
+
+.PHONY: all re fclean clean strlen

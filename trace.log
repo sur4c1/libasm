@@ -1,0 +1,6 @@
+TEST 1 [strlen()] : OK
+TEST 1 [strlen(nwrjihnowrnhwrnohnwor)] : OK
+TEST 1 [strlen(NULL)] : OK
+TEST 1 [strlen()] : OK
+TEST 1 [strlen(nwrjihnowrnhwrnohnwor)] : OK
+TEST 1 [strlen(NULL)] : OK
