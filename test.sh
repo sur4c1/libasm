@@ -37,3 +37,35 @@ printf	"strcmp\n"
 "$prefix"strcmp.sh 9 NULL NULL
 printf "\n\n\n" >> trace.log
 echo ""
+
+printf	"write\n"
+"$prefix"write.sh 1		1 "" 0
+"$prefix"write.sh 2		1 "bla" 0
+"$prefix"write.sh 3		1 "bla" 3
+"$prefix"write.sh 4		1 "abcdefghijklmnopqrstuvwxyz" 3
+"$prefix"write.sh 5		1 "abcdefghijklmnopqrstuvwxyz" 26
+"$prefix"write.sh 6		1 NULL 0
+"$prefix"write.sh 7		1 NULL 3
+"$prefix"write.sh 8		2 "" 0
+"$prefix"write.sh 9		2 "bla" 0
+"$prefix"write.sh 10	2 "bla" 3
+"$prefix"write.sh 11	2 "abcdefghijklmnopqrstuvwxyz" 3
+"$prefix"write.sh 12	2 "abcdefghijklmnopqrstuvwxyz" 26
+"$prefix"write.sh 13	2 NULL 0
+"$prefix"write.sh 14	2 NULL 3
+"$prefix"write.sh 15	-1 "" 0
+"$prefix"write.sh 16	-1 "bla" 0
+"$prefix"write.sh 17	-1 "bla" 3
+"$prefix"write.sh 18	-1 "abcdefghijklmnopqrstuvwxyz" 3
+"$prefix"write.sh 19	-1 "abcdefghijklmnopqrstuvwxyz" 26
+"$prefix"write.sh 20	-1 NULL 0
+"$prefix"write.sh 21	-1 NULL 3
+"$prefix"write.sh 22	BROKEN "" 0
+"$prefix"write.sh 23	BROKEN "bla" 0
+"$prefix"write.sh 24	BROKEN "bla" 3
+"$prefix"write.sh 25	BROKEN "abcdefghijklmnopqrstuvwxyz" 3
+"$prefix"write.sh 26	BROKEN "abcdefghijklmnopqrstuvwxyz" 26
+"$prefix"write.sh 27	BROKEN NULL 0
+"$prefix"write.sh 28	BROKEN NULL 3
+printf "\n\n\n" >> trace.log
+echo ""
