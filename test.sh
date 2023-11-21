@@ -24,3 +24,16 @@ printf	"strcpy\n"
 "$prefix"strcpy.sh 9 NULL NULL
 printf "\n\n\n" >> trace.log
 echo ""
+
+printf	"strcmp\n"
+"$prefix"strcmp.sh 1 "" ""
+"$prefix"strcmp.sh 2 "abcdefghijklmnopqrstuvwxyz" "abcdefghijklmnopqrstuvwxyz"
+"$prefix"strcmp.sh 3 "abcdefghijklmnopqrstuvwxyz" "lorem ipsum"
+"$prefix"strcmp.sh 4 "lorem ipsum" "abcdefghijklmnopqrstuvwxyz"
+"$prefix"strcmp.sh 5 "" "lorem ipsum"
+"$prefix"strcmp.sh 6 "lorem ipsum" ""
+"$prefix"strcmp.sh 7 NULL "abcdefghijklmnopqrstuvwxyz"
+"$prefix"strcmp.sh 8 "abcdefghijklmnopqrstuvwxyz" NULL
+"$prefix"strcmp.sh 9 NULL NULL
+printf "\n\n\n" >> trace.log
+echo ""

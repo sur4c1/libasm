@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 16:01:44 by bguyot            #+#    #+#              #
-#    Updated: 2023/11/21 11:11:02 by bguyot           ###   ########.fr        #
+#    Updated: 2023/11/21 11:26:30 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ fclean: clean
 clean:
 	$(RM) $(OBJS)
 
-testers: strlen strcpy
+testers: strlen strcpy strcmp
 
 strlen: ft_strlen og_strlen
 
@@ -55,10 +55,18 @@ og_strlen: $(NAME) srcs/testers/strlen.c
 
 strcpy: ft_strcpy og_strcpy
 
-ft_strlen: $(NAME) srcs/testers/strcpy.c
+ft_strcpy: $(NAME) srcs/testers/strcpy.c
 	FT=1 $(CC) -o ft_strcpy srcs/testers/strcpy.c $(NAME)
 
 og_strcpy: $(NAME) srcs/testers/strcpy.c
 	OG=1 $(CC) -o og_strcpy srcs/testers/strcpy.c $(NAME)
 
-.PHONY: all re fclean clean strlen strcpy
+strcmp: ft_strcmp og_strcmp
+
+ft_strcmp: $(NAME) srcs/testers/strcmp.c
+	FT=1 $(CC) -o ft_strcmp srcs/testers/strcmp.c $(NAME)
+
+og_strcmp: $(NAME) srcs/testers/strcmp.c
+	OG=1 $(CC) -o og_strcmp srcs/testers/strcmp.c $(NAME)
+
+.PHONY: all re fclean clean strlen strcpy strcmp
