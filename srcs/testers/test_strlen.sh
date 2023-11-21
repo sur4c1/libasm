@@ -1,7 +1,5 @@
 #!/bin/bash
 
-make strlen &> /dev/null
-
 { og_strlen "$2" &> og.log; } &> /dev/null
 echo Shell error code: $? >> og.log
 { ft_strlen "$2" &> ft.log; } &> /dev/null
