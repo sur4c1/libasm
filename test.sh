@@ -69,3 +69,36 @@ printf	"write\n"
 "$prefix"write.sh 28	BROKEN NULL 3
 printf "\n\n\n" >> trace.log
 echo ""
+
+printf	"read\n"
+"$prefix"read.sh 1		EMPTY		10		0
+"$prefix"read.sh 1		EMPTY		10		10
+"$prefix"read.sh 1		EMPTY		10		20
+"$prefix"read.sh 1		EMPTY		20		10
+"$prefix"read.sh 1		ALPHABET	10		0
+"$prefix"read.sh 1		ALPHABET	10		10
+"$prefix"read.sh 1		ALPHABET	20		10
+"$prefix"read.sh 1		ALPHABET	10		20
+"$prefix"read.sh 1		1			10		0
+"$prefix"read.sh 1		1			10		10
+"$prefix"read.sh 1		1			20		10
+"$prefix"read.sh 1		1			10		20
+"$prefix"read.sh 1		2			10		0
+"$prefix"read.sh 1		2			10		10
+"$prefix"read.sh 1		2			20		10
+"$prefix"read.sh 1		2			10		20
+"$prefix"read.sh 1		-1			10		0
+"$prefix"read.sh 1		-1			10		10
+"$prefix"read.sh 1		-1			20		10
+"$prefix"read.sh 1		-1			10		20
+"$prefix"read.sh 1		BROKEN		10		10
+"$prefix"read.sh 1		BROKEN		20		10
+"$prefix"read.sh 1		BROKEN		10		20
+"$prefix"read.sh 1		WRONLY		10		10
+"$prefix"read.sh 1		WRONLY		20		10
+"$prefix"read.sh 1		WRONLY		10		20
+"$prefix"read.sh 1		ALPHABET	NULL	0
+"$prefix"read.sh 1		ALPHABET	NULL	10
+"$prefix"read.sh 1		ALPHABET	NULL	20
+printf "\n\n\n" >> trace.log
+echo ""

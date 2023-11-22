@@ -25,4 +25,4 @@ else
 	cat og.log >> trace.log
 fi
 
-# rm og.log ft.log og2.log ft2.log og1.log ft1.log
+rm og.log ft.log og2.log ft2.log og1.log ft1.log

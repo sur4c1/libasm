@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 16:01:44 by bguyot            #+#    #+#              #
-#    Updated: 2023/11/21 12:26:47 by bguyot           ###   ########.fr        #
+#    Updated: 2023/11/22 11:05:00 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ fclean: clean
 clean:
 	$(RM) $(OBJS)
 
-testers: strlen strcpy strcmp write
+testers: strlen strcpy strcmp write read
 
 strlen: ft_strlen og_strlen
 
@@ -76,5 +76,13 @@ ft_write: $(NAME) srcs/testers/write.c
 
 og_write: $(NAME) srcs/testers/write.c
 	OG=1 $(CC) -o og_write srcs/testers/write.c $(NAME)
+
+read: ft_read og_read
+
+ft_read: $(NAME) srcs/testers/read.c
+	FT=1 $(CC) -o ft_read srcs/testers/read.c $(NAME)
+
+og_read: $(NAME) srcs/testers/read.c
+	OG=1 $(CC) -o og_read srcs/testers/read.c $(NAME)
 
 .PHONY: all re fclean clean strlen strcpy strcmp
