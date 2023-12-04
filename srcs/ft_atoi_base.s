@@ -18,10 +18,10 @@ global ft_atoi_base
 ;int	ft_atoi_base(char *str, char *base);
 ;                          %rdi       %rsi
 ft_atoi_base:
-	push	0
-	push	1
 	push	rdi			; Save RDI (str)
 	push	rsi			; Save RSI (base)
+	mov		r10, 0x0
+	mov		r11, 0x1
 
 	mov		rdi, rsi	; Set arguments to call strlen on base
 	call	ft_strlen
@@ -69,11 +69,11 @@ ft_atoi_base:
 
 	cmp		BYTE [rdi], '-'
 	jnz		end_loop_get_over_signs		; not a + AND not a -
-	mov		r8, sign
-	mul		r8, 0xFFFFFFFFFFFFFFFF	; sign *= -1
-	mov		sign, r8
+	mov		rax, 0xFFFFFFFFFFFFFFFF
+	mul		r11 	; sign *= -1
+	mov		r11, rax
 	jmp		loop_go_over_signs
-	end_loop_get_over_signs
+	end_loop_get_over_signs:
 
 	loop:
 		; while (index--)
@@ -95,22 +95,22 @@ ft_atoi_base:
 			cmp		rax, 0xFFFFFFFFFFFFFFFF
 			jz		err
 
-			mov		r8, value
-			add		r8, rax	; value += base equivalent
-			mul		r8, rbx	; value *= base size
-			mov		value, r8
+			add		r10, rax	; value += base equivalent
+			mov		rax, r10
+			mul		rbx
+			mov		r10, rax
 
 		pop		rcx
 		pop		rsi
 		pop		rdi
 	end_loop:
 
-	mov	rax, value
-	mul	rax, sign
+	mov	rax, r10
+	mul	r11
 	jmp	return
 
 	err:
-	mov		rax, 0
+	mov		rax, 0x0
 
 	return:
 	pop		rsi
@@ -153,7 +153,7 @@ check_base:
 
 			mov		bh, BYTE [rax]
 			cmp		BYTE [rdi], bh	; if *rax == *rdi
-			jz		err_check				; error
+			jz		err_check		; error
 
 			inc		rax
 		end_loop_double:
