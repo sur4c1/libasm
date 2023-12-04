@@ -4,5 +4,6 @@ a.out
 test
 settings.json
 ft_*
+!*.s
 og_*
 *.log

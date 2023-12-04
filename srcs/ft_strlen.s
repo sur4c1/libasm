@@ -15,6 +15,7 @@ global ft_strlen
 SECTION .text
 ; size_t ft_strlen(const char *str)
 ft_strlen:
+	push	rdi
 	xor		rax,	rax				;	Set the counter register to 0
 	mov		rdx,	rdi				;	Copy rdi into RDX
 
@@ -26,4 +27,5 @@ ft_strlen:
 	jmp		_increment_loop			;	jump back to begining of the loop
 
 	_end_of_loop:
+	pop		rdi
 	ret								;	returns (the return value is inside RAX)

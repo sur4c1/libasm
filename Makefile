@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 16:01:44 by bguyot            #+#    #+#              #
-#    Updated: 2023/11/22 11:05:00 by bguyot           ###   ########.fr        #
+#    Updated: 2023/12/04 10:58:01 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC_FILES	=	ft_strlen	\
 				ft_write	\
 				ft_read		\
 				ft_strdup	\
+				ft_atoi_base
 
 SRCS		=	$(addprefix srcs/, $(addsuffix .s, $(SRC_FILES)))
 OBJS		=	$(SRCS:.s=.o)
