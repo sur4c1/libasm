@@ -10,13 +10,13 @@
 ;                                                                              ;
 ; **************************************************************************** ;
 
-ERR_BASE_TOO_SHORT equ 0x1
-ERR_INVALID_BASE equ 0x2
-ERR_NO_NUMBERS equ 0x3
-ERR_FOUND_A_PLUS equ 0x4
-ERR_FOUND_A_MINUS equ 0x5
-ERR_FOUND_A_WP equ 0x6
-ERR_FOUND_DUP equ 0x7
+ERR_BASE_TOO_SHORT equ 0x0
+ERR_INVALID_BASE equ 0x0
+ERR_NO_NUMBERS equ 0x0
+ERR_FOUND_A_PLUS equ 0x0
+ERR_FOUND_A_MINUS equ 0x0
+ERR_FOUND_A_WP equ 0x0
+ERR_FOUND_DUP equ 0x0
 
 SECTION .text
 
@@ -30,6 +30,18 @@ ft_atoi_base:
 	push	rsi			; Save RSI (base)
 	mov		r10, 0x0
 	mov		r11, 0x1
+
+	cmp		rdi, 0x0
+	jnz		end_null_rdi
+		mov		rax, 0x0
+		jmp		return
+	end_null_rdi:
+
+	cmp		rsi, 0x0
+	jnz		end_null_rsi
+		mov		rax, 0x0
+		jmp		return
+	end_null_rsi:
 
 	mov		rdi, rsi	; Set arguments to call strlen on base
 	call	ft_strlen

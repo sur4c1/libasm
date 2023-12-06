@@ -108,3 +108,36 @@ printf "\e[1m\e[38;5;51mread\n\e[0m"
 "$prefix"read.sh 29		ALPHABET	NULL	20
 printf "\n\n\n\e[0m" >> trace.log
 echo ""
+
+printf "\e[1m\e[38;5;51matoi_base\n\e[0m"
+"$prefix"atoi_base.sh 1		0	0
+"$prefix"atoi_base.sh 2		0	0
+"$prefix"atoi_base.sh 3		0	0
+"$prefix"atoi_base.sh 4		0	0
+"$prefix"atoi_base.sh 5		0	0
+"$prefix"atoi_base.sh 6		0	0
+"$prefix"atoi_base.sh 7		0	0
+"$prefix"atoi_base.sh 8		0	0
+"$prefix"atoi_base.sh 9		0	0
+"$prefix"atoi_base.sh 10	0	0
+"$prefix"atoi_base.sh 11	0	0
+"$prefix"atoi_base.sh 12	0	0
+"$prefix"atoi_base.sh 13	0	0
+"$prefix"atoi_base.sh 14	0	0
+"$prefix"atoi_base.sh 15	0	0
+"$prefix"atoi_base.sh 16	0	0
+"$prefix"atoi_base.sh 17	0	0
+"$prefix"atoi_base.sh 18	0	0
+"$prefix"atoi_base.sh 19	0	0
+"$prefix"atoi_base.sh 20	0	0
+"$prefix"atoi_base.sh 21	0	0
+"$prefix"atoi_base.sh 22	0	0
+"$prefix"atoi_base.sh 23	0	0
+"$prefix"atoi_base.sh 24	0	0
+"$prefix"atoi_base.sh 25	0	0
+"$prefix"atoi_base.sh 26	0	0
+"$prefix"atoi_base.sh 27	0	0
+"$prefix"atoi_base.sh 28	0	0
+"$prefix"atoi_base.sh 29	0	0
+printf "\n\n\n\e[0m" >> trace.log
+echo ""
