@@ -22,10 +22,10 @@ fi
 
 if [ "$difference" != "" ]
 then
-	printf "TEST $1 [strcmp($in1, $in2)] : KO\n" | tee -a trace.log
+	printf "TEST %2d \e[1m\e[38;5;9mKO\e[0m [strcmp($in1, $in2)]\n" $1 | tee -a trace.log
 	echo "$difference" >> trace.log
 else
-	printf "TEST $1 [strcmp($in1, $in2)] : OK\n" | tee -a trace.log
+	printf "TEST %2d \e[1m\e[38;5;10mOK\e[0m [strcmp($in1, $in2)]\n" $1 | tee -a trace.log
 	cat og.log >> trace.log
 fi
 

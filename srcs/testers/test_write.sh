@@ -18,10 +18,10 @@ fi
 
 if [ "$difference" != "" ]
 then
-	printf "TEST $1 [write($2, $in, $4)] : KO\n" | tee -a trace.log
+	printf "TEST %2d \e[1m\e[38;5;9mKO\e[0m [write($2, $in, $4)]\n" $1 | tee -a trace.log
 	echo "$difference" >> trace.log
 else
-	printf "TEST $1 [write($2, $in, $4)] : OK\n" | tee -a trace.log
+	printf "TEST %2d \e[1m\e[38;5;10mOK\e[0m [write($2, $in, $4)]\n" $1 | tee -a trace.log
 	cat og.log >> trace.log
 fi
 

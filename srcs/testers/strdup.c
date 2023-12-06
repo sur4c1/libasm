@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.strdup.c                                      :+:      :+:    :+:   */
+/*   strdup.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 18:43:00 by bguyot            #+#    #+#             */
-/*   Updated: 2023/11/19 19:38:11 by bguyot           ###   ########.fr       */
+/*   Updated: 2023/12/06 17:24:57 by bguyot           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "libasm.h"
+#include "../../libasm.h"
+
+#ifdef	FT
+#define	test(a) ft_strdup(a)
+#else
+#define test(a) strdup(a)
+#endif
 
 int main(int argc, char **argv)
 {
-	char *str;
+	char	*str;
 
-	if (argc == 1)
+	if (argc != 2)
 		return (0);
-	str	= strdup(argv[1]);
-	printf("strdup(%s) = %s\n", argv[1], str);
-	free(str);
-	str	= ft_strdup(argv[1]);
-	printf("ft_strdup(%s) = %s\n", argv[1], str);
+	if (strcmp(argv[1], "NULL") == 0)
+		argv[1] = NULL;
+	str = test(argv[1]);
+	printf("strdup: %s\n", str);
 	free(str);
 }

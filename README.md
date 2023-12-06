@@ -41,8 +41,9 @@ All invalid function name will be ignored.
     -   [x] write
     -   [x] read
     -   [x] strdup
--   [ ] bonus
+-   [x] bonus (won't do 125%)
     -   [x] ft_atoi_base
 -   [/] tester
+    -   [ ] automatic tests for str_dup
     -   [ ] automatic tests for atoi_base
     -   [ ] selecting of the tests to be done

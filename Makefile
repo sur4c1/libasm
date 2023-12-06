@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 16:01:44 by bguyot            #+#    #+#              #
-#    Updated: 2023/12/06 12:04:18 by bguyot           ###   ########.fr        #
+#    Updated: 2023/12/06 17:11:10 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ fclean: clean
 clean:
 	$(RM) $(OBJS)
 
-testers: strlen strcpy strcmp write read atoi_base
+testers: strlen strcpy strcmp write read strdup atoi_base
 
 strlen: ft_strlen og_strlen
 
@@ -85,6 +85,14 @@ ft_read: $(NAME) srcs/testers/read.c
 
 og_read: $(NAME) srcs/testers/read.c
 	OG=1 $(CC) -o og_read srcs/testers/read.c $(NAME)
+
+strdup: ft_strdup og_strdup
+
+ft_strdup: $(NAME) srcs/testers/strdup.c
+	FT=1 $(CC) -o ft_strdup srcs/testers/strdup.c $(NAME)
+
+og_strdup: $(NAME) srcs/testers/strdup.c
+	OG=1 $(CC) -o og_strdup srcs/testers/strdup.c $(NAME)
 
 atoi_base: ft_atoi_base
 
