@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 16:01:44 by bguyot            #+#    #+#              #
-#    Updated: 2023/12/06 17:11:10 by bguyot           ###   ########.fr        #
+#    Updated: 2023/12/06 17:47:04 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,50 +49,50 @@ testers: strlen strcpy strcmp write read strdup atoi_base
 strlen: ft_strlen og_strlen
 
 ft_strlen: $(NAME) srcs/testers/strlen.c
-	FT=1 $(CC) -o ft_strlen srcs/testers/strlen.c $(NAME)
+	$(CC) -o ft_strlen -DFT=1 srcs/testers/strlen.c $(NAME)
 
 og_strlen: $(NAME) srcs/testers/strlen.c
-	OG=1 $(CC) -o og_strlen srcs/testers/strlen.c $(NAME)
+	$(CC) -o og_strlen -DOG=1 srcs/testers/strlen.c $(NAME)
 
 strcpy: ft_strcpy og_strcpy
 
 ft_strcpy: $(NAME) srcs/testers/strcpy.c
-	FT=1 $(CC) -o ft_strcpy srcs/testers/strcpy.c $(NAME)
+	$(CC) -o ft_strcpy -DFT=1 srcs/testers/strcpy.c $(NAME)
 
 og_strcpy: $(NAME) srcs/testers/strcpy.c
-	OG=1 $(CC) -o og_strcpy srcs/testers/strcpy.c $(NAME)
+	$(CC) -o og_strcpy -DOG=1 srcs/testers/strcpy.c $(NAME)
 
 strcmp: ft_strcmp og_strcmp
 
 ft_strcmp: $(NAME) srcs/testers/strcmp.c
-	FT=1 $(CC) -o ft_strcmp srcs/testers/strcmp.c $(NAME)
+	$(CC) -o ft_strcmp -DFT=1 srcs/testers/strcmp.c $(NAME)
 
 og_strcmp: $(NAME) srcs/testers/strcmp.c
-	OG=1 $(CC) -o og_strcmp srcs/testers/strcmp.c $(NAME)
+	$(CC) -o og_strcmp -DOG=1 srcs/testers/strcmp.c $(NAME)
 
 write: ft_write og_write
 
 ft_write: $(NAME) srcs/testers/write.c
-	FT=1 $(CC) -o ft_write srcs/testers/write.c $(NAME)
+	$(CC) -o ft_write -DFT=1 srcs/testers/write.c $(NAME)
 
 og_write: $(NAME) srcs/testers/write.c
-	OG=1 $(CC) -o og_write srcs/testers/write.c $(NAME)
+	$(CC) -o og_write -DOG=1 srcs/testers/write.c $(NAME)
 
 read: ft_read og_read
 
 ft_read: $(NAME) srcs/testers/read.c
-	FT=1 $(CC) -o ft_read srcs/testers/read.c $(NAME)
+	$(CC) -o ft_read -DFT=1 srcs/testers/read.c $(NAME)
 
 og_read: $(NAME) srcs/testers/read.c
-	OG=1 $(CC) -o og_read srcs/testers/read.c $(NAME)
+	$(CC) -o og_read -DOG=1 srcs/testers/read.c $(NAME)
 
 strdup: ft_strdup og_strdup
 
 ft_strdup: $(NAME) srcs/testers/strdup.c
-	FT=1 $(CC) -o ft_strdup srcs/testers/strdup.c $(NAME)
+	$(CC) -o ft_strdup -DFT=1 srcs/testers/strdup.c $(NAME)
 
 og_strdup: $(NAME) srcs/testers/strdup.c
-	OG=1 $(CC) -o og_strdup srcs/testers/strdup.c $(NAME)
+	$(CC) -o og_strdup -DOG=1 srcs/testers/strdup.c $(NAME)
 
 atoi_base: ft_atoi_base
 
