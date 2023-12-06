@@ -19,10 +19,6 @@ ft_strcmp:
 	push	rdi								;	Save RDI (s1)
 	push	rsi								;	Save RSI (s2)
 
-	cmp			rdi, 0x0;
-	jz			_ret;
-	cmp			rsi, 0x0;
-	jz			_ret;
 	_increment_loop:
 		mov		ah, [rdi]					;	tmp = [RDI]
 		cmp		BYTE [rsi],	ah				;	if [RSI] != tmp
