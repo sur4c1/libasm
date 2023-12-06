@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 16:01:44 by bguyot            #+#    #+#              #
-#    Updated: 2023/12/04 10:58:01 by bguyot           ###   ########.fr        #
+#    Updated: 2023/12/06 11:56:11 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ AR			=	ar
 CC			=	cc
 RM			=	rm -rf
 
-all: $(NAME)
+all: $(NAME) testers
 
 $(NAME):	$(OBJS)
 	$(AR) -rc $(NAME) $(OBJS)
