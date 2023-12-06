@@ -10,6 +10,14 @@
 ;                                                                              ;
 ; **************************************************************************** ;
 
+ERR_BASE_TOO_SHORT equ 0x1
+ERR_INVALID_BASE equ 0x2
+ERR_NO_NUMBERS equ 0x3
+ERR_FOUND_A_PLUS equ 0x4
+ERR_FOUND_A_MINUS equ 0x5
+ERR_FOUND_A_WP equ 0x6
+ERR_FOUND_DUP equ 0x7
+
 SECTION .text
 
 extern ft_strlen
@@ -26,12 +34,15 @@ ft_atoi_base:
 	mov		rdi, rsi	; Set arguments to call strlen on base
 	call	ft_strlen
 	cmp		rax, 0x2	; if strlen(base) < 2
-	jc		err
+	jnc		end_strlen_check
+		mov		rax, ERR_BASE_TOO_SHORT
+		jmp		return
+	end_strlen_check:
 	mov		rbx, rax	; save the strlen (base size)
 
 	call	check_base
 	cmp		rax, 0x0	; if(check_base)
-	jnz		err
+	jnz		return
 
 	; reset the RSI and RDI to original values
 	pop		rsi
@@ -44,79 +55,82 @@ ft_atoi_base:
 
 	dec		rdi
 	loop_skip_wp:
-	inc		rdi
-	cmp		BYTE [rdi], 0x0
-	jz		err
+		inc		rdi
+		cmp		BYTE [rdi], 0x0
+		mov		rax, ERR_NO_NUMBERS
+		jz		return
 
-	cmp		BYTE [rdi], ' '
-	jz		loop_skip_wp
+		cmp		BYTE [rdi], ' '
+		jz		loop_skip_wp
 
-	cmp		BYTE [rdi], 0x09 ; if *rdi < 0x09 (\t)
-	jc		end_loop_skip_wp
-	cmp		BYTE [rdi], 0x0E ; if *rdi >= 0x0E (\r + 1)
-	jnc		end_loop_skip_wp
-	jmp		loop_skip_wp
+		cmp		BYTE [rdi], 0x09 ; if *rdi < 0x09 (\t)
+		jc		end_loop_skip_wp
+		cmp		BYTE [rdi], 0x0E ; if *rdi >= 0x0E (\r + 1)
+		jnc		end_loop_skip_wp
+		jmp		loop_skip_wp
 	end_loop_skip_wp:
 
 	dec		rdi
 	loop_go_over_signs:
-	inc		rdi
-	cmp		BYTE [rdi], 0x0
-	jz		err
+		inc		rdi
+		cmp		BYTE [rdi], 0x0
+		mov		rax, ERR_NO_NUMBERS
+		jz		return
 
-	cmp		BYTE [rdi], '+'
-	jz		loop_go_over_signs			; is a +
+		cmp		BYTE [rdi], '+'
+		jz		loop_go_over_signs			; is a +
 
-	cmp		BYTE [rdi], '-'
-	jnz		end_loop_get_over_signs		; not a + AND not a -
-	mov		rax, 0xFFFFFFFFFFFFFFFF
-	mul		r11 	; sign *= -1
-	mov		r11, rax
-	jmp		loop_go_over_signs
+		cmp		BYTE [rdi], '-'
+		jnz		end_loop_get_over_signs		; not a + AND not a -
+			; else
+			mov		rax, 0xFFFFFFFFFFFFFFFF
+			mul		r11 	; sign *= -1
+			mov		r11, rax
+		jmp		loop_go_over_signs
 	end_loop_get_over_signs:
 
 	loop:
-		; while (index--)
-		jrcxz	end_loop
-		dec		rcx
-
-		; rdx = rdi + index
-		mov		rdx, rdi
-		add		rdx, rcx
+		cmp		BYTE [rdi], 0x0
+		jz		end_loop
 
 		push	rdi
 		push	rsi
-		push	rcx
-
+			mov		cl, BYTE [rdi]
 			mov		rdi, rsi
-			mov		sil, BYTE [rdx]
 			call	get_index
 
-			cmp		rax, 0xFFFFFFFFFFFFFFFF
-			jz		err
+			cmp		rax, 0	; if rax < 0
+			jns		end_check_last
+				; then
+				pop		rsi
+				pop		rdi
+				jmp		ret_no_err
+			end_check_last:
 
-			add		r10, rax	; value += base equivalent
-			mov		rax, r10
-			mul		rbx
-			mov		r10, rax
 
-		pop		rcx
+
+			mov	rcx, rax	;	save the new digit value
+			mov	rax, r10	;	set the multiplication buffer to previous nb
+			mul	rbx			;	multiply by base_size
+			mov	r10, rax	;	save the result back in our value reg
+
+			add	r10, rcx	;	add the new digit value
 		pop		rsi
 		pop		rdi
+
+		inc		rdi
+		jmp		loop
 	end_loop:
 
-	mov	rax, r10
-	mul	r11
-	jmp	return
-
-	err:
-	mov		rax, 0x0
-
+	ret_no_err:
+	mov	rax, r10	; rax = r10
+	mul	r11			; rax *= r11
 	return:
 	pop		rsi
 	pop		rdi
 	ret
 
+;; Returns 0 if the base is valid ; 1 if it is invalid
 check_base:
 	push	rdi
 
@@ -126,73 +140,75 @@ check_base:
 
 		cmp		BYTE [rdi], '+' ; if *rdi != '+'
 		jnz		end_plus_if		; skip error
-		jmp		err_check
+		mov		rax, ERR_FOUND_A_PLUS
+		jmp		return_check
 		end_plus_if:
 
 		cmp		BYTE [rdi], '-'
 		jnz		end_minus_if
-		jmp		err_check
+		mov		rax, ERR_FOUND_A_MINUS
+		jmp		return_check
 		end_minus_if:
 
 		cmp		BYTE [rdi], ' '
 		jnz		end_space_if
-		jmp		err_check
+		mov		rax, ERR_FOUND_A_WP
+		jmp		return_check
 		end_space_if:
 
 		cmp		BYTE [rdi], 0x09 ; if *rdi < 0x09 (\t)
 		jc		end_if_white
 		cmp		BYTE [rdi], 0x0E ; if *rdi >= 0x0E (\r + 1)
 		jnc		end_if_white
-		jmp		err_check
+		mov		rax, ERR_FOUND_A_WP
+		jmp		return_check
 		end_if_white:
 
 		mov	rax, rdi
+		inc	rax
 		loop_double:
 			cmp		BYTE [rax], 0x0
 			jz		end_loop_double
 
-			mov		bh, BYTE [rax]
-			cmp		BYTE [rdi], bh	; if *rax == *rdi
-			jz		err_check		; error
-
+			mov		sil, BYTE [rax]
+			cmp		BYTE [rdi], sil	; if *rax == *rdi
+			jnz		end_if_dup
+				mov		rax, ERR_FOUND_DUP
+				jmp		return_check
+			end_if_dup:
 			inc		rax
+			jmp		loop_double
 		end_loop_double:
 
 		inc		rdi
 	end_loop_char_check:
 
 	mov		rax, 0x0
-	jmp		return_check
-
-	err_check:
-	mov	rax, 0x1
-
 	return_check:
 	pop		rdi
 	ret
 
+;	Check the position of the char stored in cl inside of the string pointed by rdi
+;	return 0xFFFFFFFFFFFFFFFF (-1) if the char is not found
 get_index:
 	push	rdi
 	push	rsi
 
+	mov	rax, 0
+	get_index_loop:
+		cmp	BYTE [rdi], 0x0
+		jz	end_get_index_loop
+
+		cmp BYTE [rdi], cl
+		jz	found_it
+
+		inc rdi
+		inc rax
+		jmp get_index_loop
+	end_get_index_loop:
+
 	mov		rax, 0xFFFFFFFFFFFFFFFF
-	mov		rcx, 0
-
-	loop_get_index:
-	cmp		BYTE [rdi], 0x0
-	jz		end_loop_get_index
-
-	cmp		BYTE [rdi], sil
-	jz		end_loop_get_index
-
-	inc		rcx
-	inc		rdi
-	end_loop_get_index:
-
-	cmp		BYTE [rdi], sil
-	jnz		err_index
-	mov		rax, rcx
-	err_index:
+	found_it:
 	pop		rsi
 	pop		rdi
 	ret
