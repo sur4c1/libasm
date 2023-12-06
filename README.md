@@ -39,8 +39,4 @@ Note: The function name does not include the `ft_` prefix.
     -   [x] strdup
 -   [ ] bonus
     -   [x] ft_atoi_base
-    -   [ ] ft_list_push_front
-    -   [ ] ft_list_size
-    -   [ ] ft_list_sort
-    -   [ ] ft_list_remove_if
 -   [/] tests
