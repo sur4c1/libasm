@@ -43,7 +43,7 @@ All invalid function name will be ignored.
     -   [x] strdup
 -   [x] bonus (won't do 125%)
     -   [x] ft_atoi_base
--   [/] tester
-    -   [ ] automatic tests for str_dup
-    -   [ ] automatic tests for atoi_base
-    -   [ ] selecting of the tests to be done
+-   [x] tester
+    -   [x] automatic tests for str_dup
+    -   [x] automatic tests for atoi_base
+    -   [x] selecting of the tests to be done
