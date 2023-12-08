@@ -110,34 +110,24 @@ printf "\n\n\n\e[0m" >> trace.log
 echo ""
 
 printf "\e[1m\e[38;5;51matoi_base\n\e[0m"
-"$prefix"atoi_base.sh 1		0	0
-"$prefix"atoi_base.sh 2		0	0
-"$prefix"atoi_base.sh 3		0	0
-"$prefix"atoi_base.sh 4		0	0
-"$prefix"atoi_base.sh 5		0	0
-"$prefix"atoi_base.sh 6		0	0
-"$prefix"atoi_base.sh 7		0	0
-"$prefix"atoi_base.sh 8		0	0
-"$prefix"atoi_base.sh 9		0	0
-"$prefix"atoi_base.sh 10	0	0
-"$prefix"atoi_base.sh 11	0	0
-"$prefix"atoi_base.sh 12	0	0
-"$prefix"atoi_base.sh 13	0	0
-"$prefix"atoi_base.sh 14	0	0
-"$prefix"atoi_base.sh 15	0	0
-"$prefix"atoi_base.sh 16	0	0
-"$prefix"atoi_base.sh 17	0	0
-"$prefix"atoi_base.sh 18	0	0
-"$prefix"atoi_base.sh 19	0	0
-"$prefix"atoi_base.sh 20	0	0
-"$prefix"atoi_base.sh 21	0	0
-"$prefix"atoi_base.sh 22	0	0
-"$prefix"atoi_base.sh 23	0	0
-"$prefix"atoi_base.sh 24	0	0
-"$prefix"atoi_base.sh 25	0	0
-"$prefix"atoi_base.sh 26	0	0
-"$prefix"atoi_base.sh 27	0	0
-"$prefix"atoi_base.sh 28	0	0
-"$prefix"atoi_base.sh 29	0	0
+"$prefix"atoi_base.sh 1		0				0
+"$prefix"atoi_base.sh 2		0				""
+"$prefix"atoi_base.sh 3		1				01
+"$prefix"atoi_base.sh 4		00101010101		01
+"$prefix"atoi_base.sh 5		00101010101		0123456789
+"$prefix"atoi_base.sh 6		101010			01
+"$prefix"atoi_base.sh 7		time			ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
+"$prefix"atoi_base.sh 8		NULL			NULL
+"$prefix"atoi_base.sh 9		NULL			01
+"$prefix"atoi_base.sh 10	""				0123456789
+"$prefix"atoi_base.sh 11	123				0123
+"$prefix"atoi_base.sh 12	45				45+
+"$prefix"atoi_base.sh 13	time			abcdefghijklmnopqrstuvwxyz
+"$prefix"atoi_base.sh 14	"  -+-42"		0123456789
+"$prefix"atoi_base.sh 15	42f				0123456789abcdef
+"$prefix"atoi_base.sh 16	42F				0123456789abcdef
+"$prefix"atoi_base.sh 17	-42f			0123456789abcdef
+"$prefix"atoi_base.sh 18	-101010			01
+"$prefix"atoi_base.sh 18	-101010prout	01
 printf "\n\n\n\e[0m" >> trace.log
 echo ""

@@ -6,7 +6,7 @@
 #    By: bguyot <bguyot@student.42mulhouse.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 16:01:44 by bguyot            #+#    #+#              #
-#    Updated: 2023/12/06 17:47:04 by bguyot           ###   ########.fr        #
+#    Updated: 2023/12/08 15:30:59 by bguyot           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,7 @@ og_strdup: $(NAME) srcs/testers/strdup.c
 
 atoi_base: ft_atoi_base
 
-ft_atoi_base:
+ft_atoi_base: $(NAME) srcs/testers/atoi_base.c
 	$(CC) -o ft_atoi_base srcs/testers/atoi_base.c $(NAME)
 
 .PHONY: all re fclean clean strlen strcpy strcmp

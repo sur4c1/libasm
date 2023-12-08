@@ -54,7 +54,7 @@ ft_atoi_base:
 
 	call	check_base
 	cmp		rax, 0x0	; if(check_base)
-	jnz		return
+	jz		return
 
 	; reset the RSI and RDI to original values
 	pop		rsi
@@ -142,7 +142,7 @@ ft_atoi_base:
 	pop		rdi
 	ret
 
-;; Returns 0 if the base is valid ; 1 if it is invalid
+;; Returns 1 if the base is valid ; 0 if it is invalid
 check_base:
 	push	rdi
 
@@ -152,19 +152,19 @@ check_base:
 
 		cmp		BYTE [rdi], '+' ; if *rdi != '+'
 		jnz		end_plus_if		; skip error
-		mov		rax, ERR_FOUND_A_PLUS
+		mov		rax, 0x0
 		jmp		return_check
 		end_plus_if:
 
 		cmp		BYTE [rdi], '-'
 		jnz		end_minus_if
-		mov		rax, ERR_FOUND_A_MINUS
+		mov		rax, 0x0
 		jmp		return_check
 		end_minus_if:
 
 		cmp		BYTE [rdi], ' '
 		jnz		end_space_if
-		mov		rax, ERR_FOUND_A_WP
+		mov		rax, 0x0
 		jmp		return_check
 		end_space_if:
 
@@ -172,7 +172,7 @@ check_base:
 		jc		end_if_white
 		cmp		BYTE [rdi], 0x0E ; if *rdi >= 0x0E (\r + 1)
 		jnc		end_if_white
-		mov		rax, ERR_FOUND_A_WP
+		mov		rax, 0x0
 		jmp		return_check
 		end_if_white:
 
@@ -185,7 +185,7 @@ check_base:
 			mov		sil, BYTE [rax]
 			cmp		BYTE [rdi], sil	; if *rax == *rdi
 			jnz		end_if_dup
-				mov		rax, ERR_FOUND_DUP
+				mov		rax, 0x0
 				jmp		return_check
 			end_if_dup:
 			inc		rax
@@ -193,9 +193,10 @@ check_base:
 		end_loop_double:
 
 		inc		rdi
+		jmp		loop_char_check
 	end_loop_char_check:
 
-	mov		rax, 0x0
+	mov		rax, 0x1
 	return_check:
 	pop		rdi
 	ret
